@@ -35,5 +35,14 @@ namespace CabInvoiceTest
             EnhancedInvoice expected = new EnhancedInvoice(2, 61);
             object.Equals(expected, invoiceSummary);
         }
+        [Test]
+        public void GivenUserIdAndMultipleRides_ThenCalculateFare_shouldReturnNullUserException()
+        {
+            string userId = null;
+            InvoiceSummary[] rides = { new InvoiceSummary(2, 5), new InvoiceSummary(3, 6) };
+            RideRepository rideRepository = new RideRepository();
+            CustomException exception = Assert.Throws<CustomException>(() => rideRepository.AddRides(userId, rides));
+            Assert.AreEqual("NULL_EXCEPTION", exception.message);
+        }
     }
 }
