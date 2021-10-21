@@ -5,10 +5,10 @@ namespace CabInvoiceTest
 {
     public class Tests
     {
+        InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
         [Test]
         public void GivenDistanceAndTime_CalculateFareMethodShould_ReturnTotalFare()
         {
-            InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
             double distance = 20;
             int time = 45;
 
@@ -18,6 +18,13 @@ namespace CabInvoiceTest
 
             // Checking if the test case passes
             Assert.AreEqual(expectedFare, actualFare);
+        }
+        [Test]
+        public void GivenMultipleRides_ThenCalculateFare_ShouldReturnTotalFare()
+        {
+            InvoiceSummary[] rides = { new InvoiceSummary(2.0, 5), new InvoiceSummary(3.0, 6) };
+            double fare = invoiceGenerator.CalculateMultipleFare(rides);
+            Assert.AreEqual(61.0, fare);
         }
 
     }
