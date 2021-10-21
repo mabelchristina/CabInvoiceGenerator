@@ -26,6 +26,14 @@ namespace CabInvoiceTest
             double fare = invoiceGenerator.CalculateMultipleFare(rides);
             Assert.AreEqual(61.0, fare);
         }
-
+        [Test]
+        public void GivenMultipleRides_ThenCalculateFare_ShouldReturnInvoiceSummary()
+        {
+            InvoiceGenerator invoice = new InvoiceGenerator();
+            InvoiceSummary[] rides = { new InvoiceSummary(2.0, 5), new InvoiceSummary(3.0, 6) };
+            double invoiceSummary = invoice.CalculateMultipleFare(rides);
+            EnhancedInvoice expected = new EnhancedInvoice(2, 61);
+            object.Equals(expected, invoiceSummary);
+        }
     }
 }

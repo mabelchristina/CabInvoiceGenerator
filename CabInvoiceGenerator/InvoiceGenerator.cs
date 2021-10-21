@@ -26,5 +26,17 @@ namespace CabInvoiceGenerator
             }
             return totalFare;
         }
+        public double CalculateMultipleFareRidesSummary(InvoiceSummary[] rides)
+        {
+            double totalFare = 0;
+            int numberOfRides = 0;
+            foreach (InvoiceSummary ride in rides)
+            {
+                totalFare += CalculateFare(ride.distance, ride.time);
+                numberOfRides += 1;
+            }
+            EnhancedInvoice invoiceSummary = new EnhancedInvoice(numberOfRides, totalFare);
+            return invoiceSummary.averageFarePerRide;
+        }
     }
 }
