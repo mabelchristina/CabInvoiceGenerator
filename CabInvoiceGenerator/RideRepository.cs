@@ -6,24 +6,28 @@ namespace CabInvoiceGenerator
 {
     public class RideRepository
     {
-        public Dictionary<string, List<InvoiceSummary>> userRideObject;
+        public Dictionary<string, List<InvoiceSummary>> userRide;
 
         public RideRepository()
         {
-            this.userRideObject = new Dictionary<string, List<InvoiceSummary>>();
+            this.userRide = new Dictionary<string, List<InvoiceSummary>>();
         }
 
         public void AddRides(string UserID, InvoiceSummary[] rides)
         {
             if (UserID == null)
                 throw new CustomException(ExceptionType.NULL_EXCEPTION + "");
-            bool checkRide = userRideObject.ContainsKey(UserID);
+            bool checkRide = userRide.ContainsKey(UserID);
             List<InvoiceSummary> list = new List<InvoiceSummary>();
-            if (checkRide == false)
+            if (!checkRide)
             {
                 list.AddRange(rides);
-                userRideObject.Add(UserID, list);
+                userRide.Add(UserID, list);
             }
+        }
+        public InvoiceSummary[] GetRides(string userId)
+        {
+            return userRide[userId].ToArray();
         }
     }
 }

@@ -6,13 +6,24 @@ namespace CabInvoiceGenerator
 {
     public class InvoiceSummary
     {
+        //public double distance;
+        //public int time;
+
+        //public InvoiceSummary(double distance, int time)
+        //{
+        //    this.distance = distance;
+        //    this.time = time;
+        //}
         public double distance;
         public int time;
+        public CabRide rideType;
 
-        public InvoiceSummary(double distance, int time)
+        public InvoiceSummary(CabRide rideType, double distance, int time)
         {
             this.distance = distance;
             this.time = time;
+            this.rideType = rideType;
         }
+
     }
 }
